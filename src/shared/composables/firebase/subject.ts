@@ -1,5 +1,4 @@
-import { computed } from 'vue';
-import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, query, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'vue';
 import { ISubject } from '../../../views/allSubject/types/Subject.interface';
 import { db } from '../../services/firebase';

@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <LayoutSignInSignUpComponent :loading="loading" :user="user" @register="fnButton.register" :router-name="'Login'" :text="text"
-            :btn-name="'Sign Up'" :text-title="'Sign Up'" />
-    </div>
+    <LayoutSignInSignUpComponent :loading="loading" :user="user" @register="fnButton.register" :router-name="'Login'"
+        :text="text" :btn-name="'Sign Up'" :text-title="'Sign Up'" />
 </template>
 
 <script lang="ts">
@@ -26,7 +24,7 @@ export default defineComponent({
         const fnButton = reactive({
             register: async () => {
                 loading.value = true,
-                await store.signUp(user);
+                    await store.signUp(user);
                 loading.value = false
             }
         })

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <KeepAlive>
         <LayoutSignInSignUpComponent :loading="loading" :user="user" @google="fnButton.loginWithGoogle" @login="fnButton.login"
-            :router-name="'Register'" :text="text" :btn-name="'Sign In'" :text-title="'Sign In'" />
-    </div>
+        :router-name="'Register'" :text="text" :btn-name="'Sign In'" :text-title="'Sign In'" />
+    </KeepAlive>
 </template>
 
 <script lang="ts">
@@ -24,7 +24,7 @@ export default defineComponent({
         // })
         const loading = ref(false);
         const text = 'Don\'t have account yet ?';
-        const user: IUser = reactive({
+        const user = ref<IUser>({
             email: '',
             password: ''
         })
@@ -32,9 +32,7 @@ export default defineComponent({
         const fnButton = reactive({
             login: async () => {
                 loading.value = true;
-                console.log(loading.value);
-                
-                await store.signIn(user);
+                await store.signIn(user.value);
                 loading.value = false
             },
             loginWithGoogle: () => {

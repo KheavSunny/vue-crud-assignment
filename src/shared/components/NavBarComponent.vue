@@ -21,7 +21,7 @@
               <div class="ml-3">
                 <button @click="signOut"
                   class="text-white bg-red-500 rounded-md py-[3px] px-3 hover:bg-red-300 hover:text-red-900 hover:font-bold">
-                  Sign Out
+                  {{ $t("sign_out") }} {{ $t('hello') }}
                 </button>
               </div>
             </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="px-5 pb-3 pt-4">
           <button @click="signOut" class="text-white bg-red-500 rounded-md py-1 px-3 hover:bg-red-300 hover:text-red-600">
-            Sign Out
+            {{ $t("sign_out") }}
           </button>
         </div>
       </DisclosurePanel>
