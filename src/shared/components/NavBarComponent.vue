@@ -123,8 +123,8 @@ const navigation: IMenuItem[] = [
     href: '/about-us',
   },
 ];
-const signOut = () => {
-  store.logout();
+const signOut = async () => {
+  await store.logout();
 }
 </script>
 <style scoped>

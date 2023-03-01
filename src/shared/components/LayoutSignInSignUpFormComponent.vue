@@ -28,11 +28,10 @@
                     <router-link :to="{ name: routerName }" class="text-blue-500 underline cursor-pointer">Click
                         Here</router-link>
                 </small>
-                <div>
-                    <button v-if="btnName === 'Sign In'" @click.prevent="fnBtn.login" class="fnButton">
-                        {{ btnName }}
-                    </button>
-                    <button v-else @click.prevent="fnBtn.register" class="fnButton">
+                <div v-if="$route.path === '/login'">
+                    <button @click.prevent="fnBtn.login" class="fnButton">
+                        <div v-if="loading" class="animation-spin">
+                        </div>
                         {{ btnName }}
                     </button>
                     <div class="text-center">Or</div>
@@ -42,13 +41,19 @@
                         <img width="15" src="../../assets/icon/googleIcon.png" />
                     </button>
                 </div>
+                <div v-else>
+                    <button @click.prevent="fnBtn.register" class="fnButton">
+                        <div v-if="loading" class="animation-spin"></div>
+                        {{ btnName }}
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </template>
   
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 
 export default defineComponent({
     name: 'LayoutSignInSignUpComponent',
@@ -70,6 +75,10 @@ export default defineComponent({
         user: {
             type: Object,
             default: () => ({})
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     setup(props, context) {
@@ -85,7 +94,7 @@ export default defineComponent({
             }
         })
         return {
-            fnBtn
+            fnBtn,
         }
     }
 })
@@ -93,5 +102,9 @@ export default defineComponent({
 <style scoped>
 .fnButton {
     @apply relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
+}
+
+.animation-spin {
+    @apply w-5 h-5 rounded-full animate-spin border-2 border-solid border-blue-500 border-t-transparent mr-3
 }
 </style>

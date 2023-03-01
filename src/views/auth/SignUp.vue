@@ -1,12 +1,12 @@
 <template>
     <div>
-        <LayoutSignInSignUpComponent :user="user" @register="fnButton.register" :router-name="'Login'" :text="text"
+        <LayoutSignInSignUpComponent :loading="loading" :user="user" @register="fnButton.register" :router-name="'Login'" :text="text"
             :btn-name="'Sign Up'" :text-title="'Sign Up'" />
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import LayoutSignInSignUpComponent from '../../shared/components/LayoutSignInSignUpFormComponent.vue';
 import { useUserStore } from '../../shared/store/user';
 import { IUser } from './types/user.interface';
@@ -19,19 +19,23 @@ export default defineComponent({
         const user: IUser = reactive({
             email: '',
             password: ''
-        })
+        });
+
+        const loading = ref(false);
 
         const fnButton = reactive({
-            register: () => {
-                console.log('ok');
-                store.signUp(user);
+            register: async () => {
+                loading.value = true,
+                await store.signUp(user);
+                loading.value = false
             }
         })
 
         return {
             text,
             fnButton,
-            user
+            user,
+            loading
         }
     }
 })
