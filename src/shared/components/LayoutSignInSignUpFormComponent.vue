@@ -49,6 +49,7 @@
   
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+
 export default defineComponent({
     name: 'LayoutSignInSignUpComponent',
     props: {
@@ -66,17 +67,25 @@ export default defineComponent({
             required: true,
             type: String
         },
-        fnBtn: {
-            type: Function,
-            default: () => { }
-        },
         user: {
             type: Object,
             default: () => ({})
         }
     },
-    setup() {
+    setup(props, context) {
+        const fnBtn = reactive({
+            login: () => {
+                context.emit('login')
+            },
+            register: () => {
+                context.emit('register')
+            },
+            loginWithGoogle: () => {
+                context.emit('google')
+            }
+        })
         return {
+            fnBtn
         }
     }
 })

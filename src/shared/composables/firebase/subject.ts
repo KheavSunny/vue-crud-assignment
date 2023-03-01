@@ -51,7 +51,7 @@ const getSubject = (id: any) => {
   });
 }
 
-const updateSubject = (data: ISubject) => {
+const updateSubject = (data: ISubject|any) => {
   if (data.title && data.description) {
     const subRef = doc(db, 'subjects', data.id);
     updateDoc(subRef, data);

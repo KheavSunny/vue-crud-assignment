@@ -1,6 +1,6 @@
 <template>
     <div>
-        <LayoutSignInSignUpComponent :user="user" :fn-btn="fnButton" :router-name="'Login'" :text="text"
+        <LayoutSignInSignUpComponent :user="user" @register="fnButton.register" :router-name="'Login'" :text="text"
             :btn-name="'Sign Up'" :text-title="'Sign Up'" />
     </div>
 </template>
