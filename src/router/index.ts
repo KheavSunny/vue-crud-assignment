@@ -15,12 +15,12 @@ const router = createRouter({
       children: [
         {
           path: '/',
-          name: 'AllSubject',
+          name: 'all_subject',
           component: () => import('../views/allSubject/allSubject.vue'),
         },
         {
           path: '/about-us',
-          name: 'AboutUs',
+          name: 'about_us',
           component: () => import('../views/aboutUs.vue'),
         },
       ]

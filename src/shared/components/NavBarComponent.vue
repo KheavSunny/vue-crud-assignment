@@ -5,13 +5,15 @@
         <div class="flex h-16 items-center justify-between">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <img class="h-8 w-8" :src="LogoIcon" alt="Your Company" />
+              <router-link :to="'/'">
+                <img class="h-8 w-8" :src="LogoIcon" alt="Subjects" />
+              </router-link>
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <router-link v-for="item in navigation" :to="item.href"
-                  :class="['text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']">{{
-                    item.name }}</router-link>
+                  :class="['text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']">
+                  {{ $t(item.name) }}</router-link>
               </div>
             </div>
           </div>
@@ -21,7 +23,7 @@
               <div class="ml-3">
                 <button @click="signOut"
                   class="text-white bg-red-500 rounded-md py-[3px] px-3 hover:bg-red-300 hover:text-red-900 hover:font-bold">
-                  {{ $t("sign_out") }} {{ $t('hello') }}
+                  {{ $t("sign_out") }}
                 </button>
               </div>
             </div>
@@ -46,7 +48,7 @@
           <DisclosureButton v-for="item in navigation" class="w-full">
             <router-link :to="item.href"
               class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              {{ item.name }}
+              {{ $t(item.name) }}
             </router-link>
           </DisclosureButton>
         </div>
@@ -78,6 +80,7 @@ import LanguageSelectComponent from './base/languages_selected/LanguageSelectCom
 import { useUserStore } from '../store/user';
 import router from '../../router';
 import { getToken, getMessaging } from '@firebase/messaging';
+import { ref } from 'vue';
 
 const store = useUserStore()
 const messaging = getMessaging()
@@ -101,25 +104,28 @@ const testNotfication = () => {
   requestPermission();
 }
 
+const value = ref();
+
 const options = [
   {
     value: 'en',
-    label: `English`,
+    label: 'english',
     icon: EnglishIcon,
   },
   {
     value: 'km',
-    label: 'Khmer',
+    label: 'khmer',
     icon: KhmerIcon,
   }
 ]
+
 const navigation: IMenuItem[] = [
   {
-    name: 'All Subjects',
+    name: 'all_subject',
     href: '/',
   },
   {
-    name: 'About Us',
+    name: 'about_us',
     href: '/about-us',
   },
 ];

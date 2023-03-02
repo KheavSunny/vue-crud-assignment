@@ -1,29 +1,41 @@
 import { nextTick } from 'vue'
-import { createI18n } from 'vue-i18n'
+import { createI18n } from "vue-i18n"
+
+// const messages = {
+//   en: {
+//       hello: 'Hello'
+//   },
+//   km: {
+//       hello: 'ជំរាបសួរ'
+//   }
+// }
 
 export const SUPPORT_LOCALES = ['en', 'km']
 
-export function setupI18n(options = { locale: 'en' }) {
+// const lang = localStorage.getItem('lang') || 'en';
+// const messages = await import(`./locales/${lang}.json`);
+// console.log(messages);
+
+// const i18n = createI18n({
+//   locale: lang, //Get Data From seleted
+//   fallbackLocale: 'en',
+//   messages
+// })
+
+// export {
+//   i18n,
+// }
+
+const locale = sessionStorage.getItem('lang') || 'en'
+
+export function setupI18n(options = { locale: locale }) {
   const i18n = createI18n(options)
-  setI18nLanguage(i18n, options.locale)
+  loadLocaleMessages(i18n, locale)
   return i18n
 }
 
-export function setI18nLanguage(i18n: any, locale: any) {
-  if (i18n.mode === 'legacy') {
-    i18n.global.locale = locale
-  } else {
-    i18n.global.locale.value = locale
-  }
-  document.querySelector('html').setAttribute('lang', locale)
-}
-
-export async function loadLocaleMessages(i18n: any, locale: any) {
-  // load locale messages with dynamic import
+async function loadLocaleMessages(i18n:any , locale:string) {
   const messages = await import(`./locales/${locale}.json`)
-
-  // set locale and locale message
   i18n.global.setLocaleMessage(locale, messages.default)
-
   return nextTick()
 }

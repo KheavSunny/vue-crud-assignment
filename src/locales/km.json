@@ -6,5 +6,14 @@
     "subject_list": "បញ្ជីមុខវិជ្ជា",
     "subject_detail": "ព័ត៌មានអំពីមុខវិជ្ជា",
     "delete": "លុប",
-    "update": "កែប្រែ"
+    "edit": "កែប្រែ",
+    "update": "កែឡើងវិញ",
+    "english": "អង់គ្លេស",
+    "khmer": "ខ្មែរ",
+    "title": "ចំណងជើង",
+    "description": "ការពិពណ៌នា",
+    "input_subject": "បញ្ជុលមុខវិជ្ជា",
+    "input_description": "បញ្ជុលការពិពណ៏នាមុខវិជ្ជា",
+    "please_input_subject": "សូមបញ្ចូលមុខវិជ្ជា",
+    "please_input_description": "សូមបញ្ចូលការពិពណ៌នា"
 }

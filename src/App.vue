@@ -16,3 +16,10 @@ export default defineComponent({
 });
 
 </script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Battambang&display=swap');
+  * {
+    font-family: 'Battambang', cursive;
+  }
+</style>
